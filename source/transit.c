@@ -97,20 +97,26 @@ void TransitIn_Manage(void)
 					m = TRANSIT_WIDTH - gTransit.pnInc[i];
 					n = m & 3;	// Bytes restants.
 					m >>= 2;	// Quads.
+#if 0 // Henceforth, disabled due to segfaults
 					for (k = gTransit.pnInc[i]; m; m--, k += sizeof(u32))
 						*(u32 *)(pScr2 + nOffs2 + k) = ((CLR_BLACK_IDX << 24) | (CLR_BLACK_IDX << 16) | (CLR_BLACK_IDX << 8) | CLR_BLACK_IDX);
+#endif
 //						*(u32 *)(pScr2 + nOffs2 + k) = ((8 << 24) | (8 << 16) | (8 << 8) | 8);
+#if 0
 					for (; n; n--, k += sizeof(u8))
 						*(pScr2 + nOffs2 + k) = CLR_BLACK_IDX;
 //						*(pScr2 + nOffs2 + k) = 9;
+#endif
 				}
 				else
 				{
 					// Cas avec problèmes.
 					for (k = gTransit.pnInc[i]; k < TRANSIT_WIDTH; k++)
 					{
+#if 0
 						if (nOffs2 + k < SCR_Width)		// unsigned!
 							*(pScr2 + nOffs2 + k) = CLR_BLACK_IDX;
+#endif
 //							*(pScr2 + nOffs2 + k) = 0;
 					}
 				}
@@ -206,11 +212,15 @@ void TransitOut_Manage(void)
 					m = gTransit.pnInc[i];
 					n = m & 3;	// Bytes restants.
 					m >>= 2;	// Quads.
+#if 0
 					for (k = 0; m; m--, k += sizeof(u32))
 						*(u32 *)(pScr2 + nOffs2 + k) = ((CLR_BLACK_IDX << 24) | (CLR_BLACK_IDX << 16) | (CLR_BLACK_IDX << 8) | CLR_BLACK_IDX);
+#endif
 //						*(u32 *)(pScr2 + nOffs2 + k) = ((8 << 24) | (8 << 16) | (8 << 8) | 8);
+#if 0
 					for (; n; n--, k += sizeof(u8))
 						*(pScr2 + nOffs2 + k) = CLR_BLACK_IDX;
+#endif
 //						*(pScr2 + nOffs2 + k) = 9;
 				}
 				else
@@ -218,8 +228,10 @@ void TransitOut_Manage(void)
 					// Cas avec problèmes.
 					for (k = 0; k < gTransit.pnInc[i]; k++)
 					{
+#if 0
 						if (nOffs2 + k < SCR_Width)		// unsigned!
 							*(pScr2 + nOffs2 + k) = CLR_BLACK_IDX;
+#endif
 //							*(pScr2 + nOffs2 + k) = 0;
 					}
 				}
